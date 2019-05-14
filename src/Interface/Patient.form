@@ -333,8 +333,14 @@
         <Component class="javax.swing.JTextField" name="txt_last_name">
         </Component>
         <Component class="javax.swing.JTextField" name="txt_age">
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txt_ageKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="txt_contact_number">
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txt_contact_numberKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="txt_bill_id">
         </Component>

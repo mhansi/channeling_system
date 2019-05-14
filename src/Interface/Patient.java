@@ -40,33 +40,8 @@ public class Patient extends javax.swing.JFrame {
         }
     }
     
-  /*  public void loadId(){
-        try {
-            ResultSet rs = Get_Connection.connecion().executeQuery("select count(Patient_ID) as x from patient;");
-            if(rs.next()){
-                int rowcount = rs.getInt("x");
-                rowcount++;
-               jTextField1.setText(""+rowcount);
-                System.out.println(rowcount);
-            }
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-    }*/
-    
-   // public final void loadId(){
-       // try {
-            //  ResultSet rs = Get_Connection.connecion().executeQuery("select count(Patient_ID) as x from patient;");
-              // if(rs.next()){
-             //  int rowcount = rs.getInt("x");
-              //  rowcount++;
-                // jTextField1.setText("k");
-               //}
-        // jTextField1.setText("k");
-       // } catch (Exception e) {
-          //  System.out.println(e);
-      //  }
-    //}
+  
+  
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -146,6 +121,18 @@ public class Patient extends javax.swing.JFrame {
         jLabel16.setText(":");
 
         label_id.setText("Auto Generate");
+
+        txt_age.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_ageKeyTyped(evt);
+            }
+        });
+
+        txt_contact_number.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_contact_numberKeyTyped(evt);
+            }
+        });
 
         jLabel18.setText("Gender");
 
@@ -401,7 +388,7 @@ public class Patient extends javax.swing.JFrame {
       String fname = txt_first_name.getText();
       String lname = txt_last_name.getText();
       int age = Integer.parseInt(txt_age.getText());
-      //int gender = com_gender.getSelectedIndex();
+      String gender = com_gender.getSelectedItem().toString();
       int cnumber = Integer.parseInt(txt_contact_number.getText());
       String bid = txt_bill_id.getText();
         try {
@@ -441,6 +428,26 @@ public class Patient extends javax.swing.JFrame {
         } catch (Exception e) {
         }
     }//GEN-LAST:event_btn_deleteActionPerformed
+
+    private void txt_ageKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_ageKeyTyped
+            char c = evt.getKeyChar();
+       if(Character.isLetter(c)){
+           evt.consume();
+          
+           java.awt.Toolkit.getDefaultToolkit().beep();
+          
+       }
+    }//GEN-LAST:event_txt_ageKeyTyped
+
+    private void txt_contact_numberKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_contact_numberKeyTyped
+           char c = evt.getKeyChar();
+       if(Character.isLetter(c)){
+           evt.consume();
+          
+           java.awt.Toolkit.getDefaultToolkit().beep();
+          
+       }
+    }//GEN-LAST:event_txt_contact_numberKeyTyped
 
     /**
      * @param args the command line arguments
@@ -512,4 +519,8 @@ public class Patient extends javax.swing.JFrame {
     private javax.swing.JTextField txt_id;
     private javax.swing.JTextField txt_last_name;
     // End of variables declaration//GEN-END:variables
+
+       
+        
+
 }

@@ -90,14 +90,8 @@
                       <Component id="jLabel17" alignment="0" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="1" attributes="0">
-                      <Group type="102" alignment="1" attributes="0">
-                          <Component id="jLabel19" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="txt_id" min="-2" pref="80" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="1" attributes="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="com_specialization" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
@@ -117,7 +111,7 @@
                                   <Component id="txt_first_name" alignment="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace pref="204" max="32767" attributes="0"/>
+                          <EmptySpace pref="167" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="btn_update" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="btn_save" alignment="0" min="-2" pref="95" max="-2" attributes="0"/>
@@ -125,6 +119,10 @@
                               <Component id="btn_delete" alignment="0" min="-2" pref="95" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="165" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" attributes="0">
+                          <Component id="txt_id" min="-2" pref="118" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -154,7 +152,6 @@
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel12" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel19" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="txt_id" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -342,18 +339,20 @@
             <Property name="text" type="java.lang.String" value=":"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel19">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Auto Generate"/>
-          </Properties>
-        </Component>
         <Component class="javax.swing.JTextField" name="txt_first_name">
         </Component>
         <Component class="javax.swing.JTextField" name="txt_last_name">
         </Component>
         <Component class="javax.swing.JTextField" name="txt_age">
+          <Events>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txt_ageKeyPressed"/>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txt_ageKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="txt_contact_number">
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txt_contact_numberKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="txt_admin_id">
         </Component>
@@ -389,10 +388,22 @@
           </AuxValues>
         </Component>
         <Component class="javax.swing.JPasswordField" name="pas_password">
+          <Properties>
+            <Property name="toolTipText" type="java.lang.String" value="Must Include 8 to 10 character ,lower case ,upper case and numeric character."/>
+          </Properties>
+          <Events>
+            <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="pas_passwordFocusLost"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JPasswordField" name="pas_re_password">
+          <Events>
+            <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="pas_re_passwordFocusLost"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="txt_id">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txt_idActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btn_save">
           <Properties>

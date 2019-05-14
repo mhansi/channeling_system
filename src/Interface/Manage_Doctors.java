@@ -5,7 +5,10 @@
  */
 package Interface;
 
-import static Interface.Manage_Receptient.manage_receptient;
+import com.sun.media.sound.Toolkit;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -18,7 +21,7 @@ public class Manage_Doctors extends javax.swing.JFrame {
      */
     public Manage_Doctors() {
         initComponents();
-        txt_id.setVisible(false);
+        loadId();
     }
 
     /**
@@ -53,7 +56,6 @@ public class Manage_Doctors extends javax.swing.JFrame {
         jLabel21 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
-        jLabel19 = new javax.swing.JLabel();
         txt_first_name = new javax.swing.JTextField();
         txt_last_name = new javax.swing.JTextField();
         txt_age = new javax.swing.JTextField();
@@ -120,7 +122,20 @@ public class Manage_Doctors extends javax.swing.JFrame {
 
         jLabel23.setText(":");
 
-        jLabel19.setText("Auto Generate");
+        txt_age.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txt_ageKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_ageKeyTyped(evt);
+            }
+        });
+
+        txt_contact_number.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_contact_numberKeyTyped(evt);
+            }
+        });
 
         buttonGroup1.add(rad_male);
         rad_male.setText("Male");
@@ -129,6 +144,25 @@ public class Manage_Doctors extends javax.swing.JFrame {
         rad_female.setText("Female");
 
         com_specialization.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cardiologists", "Dermatologists", "Dermatologists", "Endocrinologists" }));
+
+        pas_password.setToolTipText("Must Include 8 to 10 character ,lower case ,upper case and numeric character.");
+        pas_password.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                pas_passwordFocusLost(evt);
+            }
+        });
+
+        pas_re_password.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                pas_re_passwordFocusLost(evt);
+            }
+        });
+
+        txt_id.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_idActionPerformed(evt);
+            }
+        });
 
         btn_save.setBackground(new java.awt.Color(0, 0, 0));
         btn_save.setForeground(new java.awt.Color(255, 255, 255));
@@ -200,12 +234,7 @@ public class Manage_Doctors extends javax.swing.JFrame {
                     .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(31, 31, 31)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel19)
-                        .addGap(18, 18, 18)
-                        .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(com_specialization, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -222,13 +251,16 @@ public class Manage_Doctors extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(txt_last_name, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)
                                 .addComponent(txt_first_name, javax.swing.GroupLayout.Alignment.LEADING)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 204, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 167, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btn_update)
                             .addComponent(btn_save, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btn_search)
                             .addComponent(btn_delete, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(165, 165, 165))))
+                        .addGap(165, 165, 165))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -250,7 +282,6 @@ public class Manage_Doctors extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
                             .addComponent(jLabel12)
-                            .addComponent(jLabel19)
                             .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -325,15 +356,105 @@ public class Manage_Doctors extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btn_saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_saveActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn_saveActionPerformed
-
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-         manage_doctors.setVisible(false);
-       Admin admin = new Admin();
+        manage_doctors.setVisible(false);
+        Admin admin = new Admin();
         admin.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void btn_saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_saveActionPerformed
+        String id = txt_id.getText();
+        String fname = txt_first_name.getText();
+        String lname = txt_last_name.getText();
+        String gender = "";
+        if(rad_male.isSelected()){
+            gender="male";
+        }
+        if(rad_female.isSelected()){
+            gender="female";
+        }
+        String specialization = com_specialization.getSelectedItem().toString();
+        int age = Integer.parseInt(txt_age.getText());
+
+        int cnumber = Integer.parseInt(txt_contact_number.getText());
+        String pas = pas_password.getText();
+        String rpas = pas_re_password.getText();
+        String aid = txt_admin_id.getText();
+
+        try {
+            Statement statement = Get_Connection.connecion();
+            statement.executeUpdate("INSERT INTO doctors (Doctor_ID,First_Name,Last_Name,Gender,Specialization,Age,Contact_Number,Password,Re_Password,Admin_ID) Value ('"+id+"','"+fname+"','"+lname+"','"+gender+"','"+specialization+"',"+age+","+cnumber+",'"+pas+"','"+rpas+"','"+aid+"')");
+            JOptionPane.showMessageDialog(this, "Saved");
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
+    }//GEN-LAST:event_btn_saveActionPerformed
+
+    private void txt_idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_idActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_idActionPerformed
+
+    private void pas_re_passwordFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_pas_re_passwordFocusLost
+        String pas = pas_password.getText();
+        String rpas = pas_re_password.getText();
+
+        if(pas.equals(rpas)){
+            //JOptionPane.showMessageDialog(this, "Password Match");
+        }else{
+            pas_re_password.setText("");
+            JOptionPane.showMessageDialog(this, "Check Password Again");
+        }
+    }//GEN-LAST:event_pas_re_passwordFocusLost
+
+    private void pas_passwordFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_pas_passwordFocusLost
+        String pas = pas_password.getText();
+        String uc = "(.*[A-Z].*)";
+        String lc = "(.*[a-z].*)";
+        String numbers = "(.*[0-9].*)";
+        if(pas.length()>10||pas.length()<8){
+            JOptionPane.showMessageDialog(this, "Invalid Password");
+        }
+        else if(!pas.matches(uc)){
+            JOptionPane.showMessageDialog(this, "Please Include a Upper Case");
+        }
+        else if(!pas.matches(lc)){
+            JOptionPane.showMessageDialog(this, "Please Include a Lower Case");
+        }
+        else if(!pas.matches(numbers)){
+            JOptionPane.showMessageDialog(this, "Please Include a Number");
+        }
+
+    }//GEN-LAST:event_pas_passwordFocusLost
+
+    private void txt_contact_numberKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_contact_numberKeyTyped
+        char c = evt.getKeyChar();
+        if(Character.isLetter(c)){
+            evt.consume();
+
+            java.awt.Toolkit.getDefaultToolkit().beep();
+        }
+        int i = txt_contact_number.getText().length();
+        if(i==10){
+            evt.consume();
+            java.awt.Toolkit.getDefaultToolkit().beep();
+        }
+    }//GEN-LAST:event_txt_contact_numberKeyTyped
+
+    private void txt_ageKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_ageKeyTyped
+        char c = evt.getKeyChar();
+        if(Character.isLetter(c)){
+            evt.consume();
+
+            java.awt.Toolkit.getDefaultToolkit().beep();
+
+        }
+    }//GEN-LAST:event_txt_ageKeyTyped
+
+    private void txt_ageKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_ageKeyPressed
+
+    }//GEN-LAST:event_txt_ageKeyPressed
 
     /**
      * @param args the command line arguments
@@ -390,7 +511,6 @@ public class Manage_Doctors extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
@@ -414,4 +534,18 @@ public class Manage_Doctors extends javax.swing.JFrame {
     private javax.swing.JTextField txt_id;
     private javax.swing.JTextField txt_last_name;
     // End of variables declaration//GEN-END:variables
+public void loadId() {
+        try {
+            ResultSet resultset = Get_Connection.connecion().executeQuery("select count(Doctor_ID) as x from doctors;");
+            
+            if (resultset.next()) {
+                int rowcount = resultset.getInt("x");
+                rowcount++;
+                txt_id.setText("" + rowcount);
+            }
+            
+        } catch (Exception e) {
+        }
+    }
+   
 }
