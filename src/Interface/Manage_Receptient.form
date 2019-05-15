@@ -30,16 +30,12 @@
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jPanel1" max="32767" attributes="0"/>
-              <EmptySpace min="-2" pref="97" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="0" pref="22" max="32767" attributes="0"/>
-          </Group>
+          <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
@@ -90,9 +86,9 @@
                                           <EmptySpace max="32767" attributes="0"/>
                                           <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Component id="com_male" min="-2" max="-2" attributes="0"/>
+                                          <Component id="rad_male" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Component id="com_female" min="-2" max="-2" attributes="0"/>
+                                          <Component id="rad_female" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
@@ -211,8 +207,8 @@
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel14" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel21" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="com_male" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="com_female" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="rad_male" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="rad_female" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
@@ -393,7 +389,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txt_last_nameActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JRadioButton" name="com_male">
+        <Component class="javax.swing.JRadioButton" name="rad_male">
           <Properties>
             <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
               <ComponentRef name="buttonGroup1"/>
@@ -401,7 +397,7 @@
             <Property name="text" type="java.lang.String" value="Male"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JRadioButton" name="com_female">
+        <Component class="javax.swing.JRadioButton" name="rad_female">
           <Properties>
             <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
               <ComponentRef name="buttonGroup1"/>
@@ -410,14 +406,26 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txt_age">
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txt_ageKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="txt_city">
         </Component>
         <Component class="javax.swing.JTextField" name="txt_contact_number">
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txt_contact_numberKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JPasswordField" name="pas_password">
+          <Events>
+            <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="pas_passwordFocusLost"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JPasswordField" name="pas_re_password">
+          <Events>
+            <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="pas_re_passwordFocusLost"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="txt_admin_id">
         </Component>
@@ -434,6 +442,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Save"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jButton2">
           <Properties>
@@ -448,6 +459,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="update"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jButton3">
           <Properties>
@@ -479,6 +493,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Delete"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton4ActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jButton5">
           <Properties>

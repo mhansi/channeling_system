@@ -56,7 +56,7 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="259" max="32767" attributes="0"/>
                   <Component id="jLabel1" min="-2" pref="218" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="189" max="-2" attributes="0"/>
                   <Component id="jButton3" min="-2" max="-2" attributes="0"/>
@@ -92,6 +92,10 @@
                   <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
+                          <Component id="txt_id" min="-2" pref="118" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="com_specialization" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
@@ -111,17 +115,13 @@
                                   <Component id="txt_first_name" alignment="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace pref="167" max="32767" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="btn_update" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="btn_save" alignment="0" min="-2" pref="95" max="-2" attributes="0"/>
-                              <Component id="btn_search" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="btn_delete" alignment="0" min="-2" pref="95" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="btn_search" pref="104" max="32767" attributes="0"/>
+                              <Component id="btn_delete" max="32767" attributes="0"/>
+                              <Component id="btn_update" max="32767" attributes="0"/>
+                              <Component id="btn_save" max="32767" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="165" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" attributes="0">
-                          <Component id="txt_id" min="-2" pref="118" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
@@ -203,11 +203,11 @@
                                   </Group>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                                   <Component id="btn_save" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
                                   <Component id="btn_update" min="-2" pref="41" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                                   <Component id="btn_search" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="56" pref="56" max="-2" attributes="0"/>
                                   <Component id="btn_delete" min="-2" max="-2" attributes="0"/>
@@ -271,7 +271,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel8">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Coontact Number"/>
+            <Property name="text" type="java.lang.String" value="Contact Number"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel9">
@@ -398,6 +398,7 @@
         <Component class="javax.swing.JPasswordField" name="pas_re_password">
           <Events>
             <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="pas_re_passwordFocusLost"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="pas_re_passwordActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="txt_id">
@@ -435,6 +436,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="update"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_updateActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btn_search">
           <Properties>
@@ -449,6 +453,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Search"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_searchActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btn_delete">
           <Properties>
@@ -463,6 +470,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Delete"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_deleteActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jButton3">
           <Properties>

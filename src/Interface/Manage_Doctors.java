@@ -5,7 +5,6 @@
  */
 package Interface;
 
-import com.sun.media.sound.Toolkit;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
@@ -94,7 +93,7 @@ public class Manage_Doctors extends javax.swing.JFrame {
 
         jLabel7.setText("Age");
 
-        jLabel8.setText("Coontact Number");
+        jLabel8.setText("Contact Number");
 
         jLabel9.setText("Password");
 
@@ -157,6 +156,11 @@ public class Manage_Doctors extends javax.swing.JFrame {
                 pas_re_passwordFocusLost(evt);
             }
         });
+        pas_re_password.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pas_re_passwordActionPerformed(evt);
+            }
+        });
 
         txt_id.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -178,16 +182,31 @@ public class Manage_Doctors extends javax.swing.JFrame {
         btn_update.setForeground(new java.awt.Color(255, 255, 255));
         btn_update.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/update.png"))); // NOI18N
         btn_update.setText("update");
+        btn_update.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_updateActionPerformed(evt);
+            }
+        });
 
         btn_search.setBackground(new java.awt.Color(0, 0, 0));
         btn_search.setForeground(new java.awt.Color(255, 255, 255));
         btn_search.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/search.png"))); // NOI18N
         btn_search.setText("Search");
+        btn_search.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_searchActionPerformed(evt);
+            }
+        });
 
         btn_delete.setBackground(new java.awt.Color(0, 0, 0));
         btn_delete.setForeground(new java.awt.Color(255, 255, 255));
         btn_delete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/delete.png"))); // NOI18N
         btn_delete.setText("Delete");
+        btn_delete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_deleteActionPerformed(evt);
+            }
+        });
 
         jButton3.setBackground(new java.awt.Color(204, 255, 204));
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/5.png"))); // NOI18N
@@ -203,7 +222,7 @@ public class Manage_Doctors extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(259, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(189, 189, 189)
                 .addComponent(jButton3)
@@ -236,6 +255,9 @@ public class Manage_Doctors extends javax.swing.JFrame {
                 .addGap(31, 31, 31)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(com_specialization, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -251,15 +273,12 @@ public class Manage_Doctors extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(txt_last_name, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)
                                 .addComponent(txt_first_name, javax.swing.GroupLayout.Alignment.LEADING)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 167, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btn_update)
-                            .addComponent(btn_save, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btn_search)
-                            .addComponent(btn_delete, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(165, 165, 165))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btn_search, javax.swing.GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE)
+                            .addComponent(btn_delete, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btn_update, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btn_save, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
@@ -323,11 +342,11 @@ public class Manage_Doctors extends javax.swing.JFrame {
                                     .addComponent(pas_password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel21)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(14, 14, 14)
+                                .addGap(15, 15, 15)
                                 .addComponent(btn_save)
-                                .addGap(39, 39, 39)
+                                .addGap(40, 40, 40)
                                 .addComponent(btn_update, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(35, 35, 35)
+                                .addGap(33, 33, 33)
                                 .addComponent(btn_search)
                                 .addGap(56, 56, 56)
                                 .addComponent(btn_delete)))
@@ -455,6 +474,79 @@ public class Manage_Doctors extends javax.swing.JFrame {
     private void txt_ageKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_ageKeyPressed
 
     }//GEN-LAST:event_txt_ageKeyPressed
+
+    private void btn_updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_updateActionPerformed
+        String id = txt_id.getText();
+        String fname = txt_first_name.getText();
+        String lname = txt_last_name.getText();
+        String gender = "";
+        if(rad_male.isSelected()){
+            gender="male";
+        }
+        if(rad_female.isSelected()){
+            gender="female";
+        }
+        String specialization = com_specialization.getSelectedItem().toString();
+        int age = Integer.parseInt(txt_age.getText());
+
+        int cnumber = Integer.parseInt(txt_contact_number.getText());
+        String pas = pas_password.getText();
+        String rpas = pas_re_password.getText();
+        String aid = txt_admin_id.getText();
+        try {
+            Statement statement = Get_Connection.connecion();
+            statement.executeUpdate("Update doctors set First_Name='" +fname+ "',Last_Name='"+lname+"',Gender='"+gender+"',Specialization='"+specialization+"',Age="+age+",Contact_Number="+cnumber+",Password='"+pas+"',Re_Password='"+rpas+"',Admin_ID='"+aid+"' where Doctor_ID='"+id+"'");
+            JOptionPane.showMessageDialog(this, "Updated");
+            
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        loadId();
+    }//GEN-LAST:event_btn_updateActionPerformed
+
+    private void btn_searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_searchActionPerformed
+       String id = txt_id.getText();
+        try {
+            ResultSet resultset = Get_Connection.connecion().executeQuery("select * from doctors where Doctor_ID= '" +id+ "'");
+            if (resultset.next()) {
+                txt_first_name.setText(resultset.getString("First_Name"));
+                txt_last_name.setText(resultset.getString("Last_Name"));
+                String gender =resultset.getString("Gender");
+                
+                if(gender.equals("male")){
+                    rad_male.setSelected(true);
+                }else if(gender.equals("female")){
+                    rad_female.setSelected(true);
+                }
+                com_specialization.setSelectedItem(resultset.getString("Specialization"));
+                txt_age.setText(""+resultset.getInt("Age"));
+                txt_contact_number.setText(""+resultset.getInt("Contact_Number"));
+                pas_password.setText("CAN'T DISPLAY");
+                pas_re_password.setText("CAN'T DISPLAY");
+                txt_admin_id.setText(resultset.getString("Admin_ID"));
+                
+            } else {
+                JOptionPane.showConfirmDialog(this, "Unknown ID");
+                txt_id.setText(null);
+            }
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_btn_searchActionPerformed
+
+    private void btn_deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_deleteActionPerformed
+        String id = txt_id.getText();
+        try {
+             Statement statement = Get_Connection.connecion();
+        statement.executeUpdate("delete from doctors where Doctor_ID ='" +id+ "'");
+        JOptionPane.showMessageDialog(this, "Deleted");
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }//GEN-LAST:event_btn_deleteActionPerformed
+
+    private void pas_re_passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pas_re_passwordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pas_re_passwordActionPerformed
 
     /**
      * @param args the command line arguments

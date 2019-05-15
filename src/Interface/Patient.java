@@ -32,7 +32,7 @@ public class Patient extends javax.swing.JFrame {
                 int rowcount = resultset.getInt("x");
                 rowcount++;
                 txt_id.setText("" +rowcount);
-                label_id.setText("" +rowcount);
+              
                
             }
             
@@ -66,8 +66,6 @@ public class Patient extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
-        label_id = new javax.swing.JLabel();
         txt_first_name = new javax.swing.JTextField();
         txt_last_name = new javax.swing.JTextField();
         txt_age = new javax.swing.JTextField();
@@ -117,10 +115,6 @@ public class Patient extends javax.swing.JFrame {
         jLabel13.setText(":");
 
         jLabel14.setText(":");
-
-        jLabel16.setText(":");
-
-        label_id.setText("Auto Generate");
 
         txt_age.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -220,25 +214,23 @@ public class Patient extends javax.swing.JFrame {
                         .addGap(37, 37, 37)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel13)
+                                    .addComponent(jLabel20))
+                                .addGap(18, 18, 18)
+                                .addComponent(txt_age))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel9)
+                                .addGap(18, 18, 18)
+                                .addComponent(txt_id))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel10)
                                 .addGap(18, 18, 18)
                                 .addComponent(txt_first_name))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel11)
                                 .addGap(18, 18, 18)
-                                .addComponent(txt_last_name))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel9)
-                                .addGap(18, 18, 18)
-                                .addComponent(label_id)
-                                .addGap(34, 34, 34)
-                                .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel13)
-                                    .addComponent(jLabel20))
-                                .addGap(18, 18, 18)
-                                .addComponent(txt_age))))
+                                .addComponent(txt_last_name, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(com_gender, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
@@ -247,35 +239,26 @@ public class Patient extends javax.swing.JFrame {
                             .addComponent(jLabel12)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                             .addComponent(txt_contact_number, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(65, 65, 65)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btn_search)
-                                    .addComponent(btn_delete, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(104, 104, 104))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btn_save, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btn_update))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
-                                .addComponent(jButton1)
-                                .addContainerGap())))))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(btn_update, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)
+                            .addComponent(btn_delete, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btn_search, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(btn_save, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                        .addComponent(jButton1)))
+                .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(198, 198, 198))
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(172, 172, 172)
-                    .addComponent(jLabel16)
-                    .addContainerGap(397, Short.MAX_VALUE)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -288,7 +271,6 @@ public class Patient extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
                             .addComponent(jLabel9)
-                            .addComponent(label_id)
                             .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -334,16 +316,11 @@ public class Patient extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(btn_save)
                             .addComponent(jButton1))
-                        .addGap(31, 31, 31)
-                        .addComponent(btn_update, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(41, 41, 41)
+                        .addComponent(btn_update)
                         .addGap(31, 31, 31)
                         .addComponent(btn_search)))
                 .addContainerGap(32, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(148, 148, 148)
-                    .addComponent(jLabel16)
-                    .addContainerGap(157, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -360,6 +337,19 @@ public class Patient extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void txt_idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_idActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_idActionPerformed
+
+    private void btn_deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_deleteActionPerformed
+        String id = txt_id.getText();
+        try {
+            Statement statement = Get_Connection.connecion();
+            statement.executeUpdate("delete from patient where Patient_ID ='" +id+ "'");
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_btn_deleteActionPerformed
+
     private void btn_searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_searchActionPerformed
         String id = txt_id.getText();
         try {
@@ -370,84 +360,71 @@ public class Patient extends javax.swing.JFrame {
                 txt_age.setText(resultset.getString("Age"));
                 txt_contact_number.setText(resultset.getString("Contact_Number"));
                 txt_bill_id.setText(resultset.getString("Bill_ID"));
-                
+
             } else {
                 JOptionPane.showConfirmDialog(this, "Unknown ID");
                 txt_id.setText(null);
             }
         } catch (Exception e) {
-        }        
+        }
     }//GEN-LAST:event_btn_searchActionPerformed
 
-    private void txt_idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_idActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txt_idActionPerformed
-
-    private void btn_saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_saveActionPerformed
-      String id = txt_id.getText();
-      String fname = txt_first_name.getText();
-      String lname = txt_last_name.getText();
-      int age = Integer.parseInt(txt_age.getText());
-      String gender = com_gender.getSelectedItem().toString();
-      int cnumber = Integer.parseInt(txt_contact_number.getText());
-      String bid = txt_bill_id.getText();
-        try {
-            Statement statement = Get_Connection.connecion();
-            statement.executeUpdate("INSERT INTO patient(Patient_ID,First_Name,Last_Name,Age,Contact_number,Bill_ID) Values('"+id+"','"+fname+"','"+lname+"',"+age+","+cnumber+",'"+bid+"')");
-            JOptionPane.showMessageDialog(this, "Saved");
-            
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-    }//GEN-LAST:event_btn_saveActionPerformed
-
     private void btn_updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_updateActionPerformed
-         String id = txt_id.getText();
-      String fname = txt_first_name.getText();
-      String lname = txt_last_name.getText();
-      int age = Integer.parseInt(txt_age.getText());
-      //int gender = com_gender.getSelectedIndex();
-      int cnumber = Integer.parseInt(txt_contact_number.getText());
-      String bid = txt_bill_id.getText();
+        String id = txt_id.getText();
+        String fname = txt_first_name.getText();
+        String lname = txt_last_name.getText();
+        int age = Integer.parseInt(txt_age.getText());
+        //int gender = com_gender.getSelectedIndex();
+        int cnumber = Integer.parseInt(txt_contact_number.getText());
+        String bid = txt_bill_id.getText();
         try {
             Statement statement = Get_Connection.connecion();
             statement.executeUpdate("Update patient set First_Name='"+fname+"',Last_Name='"+lname+"',Age='"+age+"',Contact_Number='"+cnumber+"',Bill_ID='"+bid+"' where Patient_ID='" +id+ "' ");
             JOptionPane.showMessageDialog(this, "Updated");
-            
+
         } catch (Exception e) {
             System.out.println(e);
         }
         loadId();
     }//GEN-LAST:event_btn_updateActionPerformed
 
-    private void btn_deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_deleteActionPerformed
-       String id = txt_id.getText();
+    private void btn_saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_saveActionPerformed
+        String id = txt_id.getText();
+        String fname = txt_first_name.getText();
+        String lname = txt_last_name.getText();
+        int age = Integer.parseInt(txt_age.getText());
+        String gender = com_gender.getSelectedItem().toString();
+        int cnumber = Integer.parseInt(txt_contact_number.getText());
+        String bid = txt_bill_id.getText();
         try {
-             Statement statement = Get_Connection.connecion();
-        statement.executeUpdate("delete from patient where Patient_ID ='" +id+ "'");
-        } catch (Exception e) {
-        }
-    }//GEN-LAST:event_btn_deleteActionPerformed
+            Statement statement = Get_Connection.connecion();
+            statement.executeUpdate("INSERT INTO patient(Patient_ID,First_Name,Last_Name,Age,Contact_number,Bill_ID) Values('"+id+"','"+fname+"','"+lname+"',"+age+","+cnumber+",'"+bid+"')");
+            JOptionPane.showMessageDialog(this, "Saved");
 
-    private void txt_ageKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_ageKeyTyped
-            char c = evt.getKeyChar();
-       if(Character.isLetter(c)){
-           evt.consume();
-          
-           java.awt.Toolkit.getDefaultToolkit().beep();
-          
-       }
-    }//GEN-LAST:event_txt_ageKeyTyped
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }//GEN-LAST:event_btn_saveActionPerformed
 
     private void txt_contact_numberKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_contact_numberKeyTyped
-           char c = evt.getKeyChar();
-       if(Character.isLetter(c)){
-           evt.consume();
-          
-           java.awt.Toolkit.getDefaultToolkit().beep();
-          
-       }
+        char c = evt.getKeyChar();
+        if(Character.isLetter(c)){
+            evt.consume();
+
+            java.awt.Toolkit.getDefaultToolkit().beep();
+
+        }
     }//GEN-LAST:event_txt_contact_numberKeyTyped
+
+    private void txt_ageKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_ageKeyTyped
+        char c = evt.getKeyChar();
+        if(Character.isLetter(c)){
+            evt.consume();
+
+            java.awt.Toolkit.getDefaultToolkit().beep();
+
+        }
+    }//GEN-LAST:event_txt_ageKeyTyped
 
     /**
      * @param args the command line arguments
@@ -499,7 +476,6 @@ public class Patient extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
@@ -511,7 +487,6 @@ public class Patient extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel label_id;
     private javax.swing.JTextField txt_age;
     private javax.swing.JTextField txt_bill_id;
     private javax.swing.JTextField txt_contact_number;

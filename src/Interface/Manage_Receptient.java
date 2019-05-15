@@ -5,6 +5,10 @@
  */
 package Interface;
 
+import java.sql.ResultSet;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Hansi
@@ -16,7 +20,8 @@ public class Manage_Receptient extends javax.swing.JFrame {
      */
     public Manage_Receptient() {
         initComponents();
-         txt_id.setVisible(false);
+        
+         loadId();
     }
 
     /**
@@ -55,8 +60,8 @@ public class Manage_Receptient extends javax.swing.JFrame {
         jLabel21 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
         txt_last_name = new javax.swing.JTextField();
-        com_male = new javax.swing.JRadioButton();
-        com_female = new javax.swing.JRadioButton();
+        rad_male = new javax.swing.JRadioButton();
+        rad_female = new javax.swing.JRadioButton();
         txt_age = new javax.swing.JTextField();
         txt_city = new javax.swing.JTextField();
         txt_contact_number = new javax.swing.JTextField();
@@ -132,21 +137,55 @@ public class Manage_Receptient extends javax.swing.JFrame {
             }
         });
 
-        buttonGroup1.add(com_male);
-        com_male.setText("Male");
+        buttonGroup1.add(rad_male);
+        rad_male.setText("Male");
 
-        buttonGroup1.add(com_female);
-        com_female.setText("Female");
+        buttonGroup1.add(rad_female);
+        rad_female.setText("Female");
+
+        txt_age.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_ageKeyTyped(evt);
+            }
+        });
+
+        txt_contact_number.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_contact_numberKeyTyped(evt);
+            }
+        });
+
+        pas_password.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                pas_passwordFocusLost(evt);
+            }
+        });
+
+        pas_re_password.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                pas_re_passwordFocusLost(evt);
+            }
+        });
 
         jButton1.setBackground(new java.awt.Color(0, 0, 0));
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/save.png"))); // NOI18N
         jButton1.setText("Save");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setBackground(new java.awt.Color(0, 0, 0));
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/update.png"))); // NOI18N
         jButton2.setText("update");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setBackground(new java.awt.Color(0, 0, 0));
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
@@ -162,6 +201,11 @@ public class Manage_Receptient extends javax.swing.JFrame {
         jButton4.setForeground(new java.awt.Color(255, 255, 255));
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/delete.png"))); // NOI18N
         jButton4.setText("Delete");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jButton5.setBackground(new java.awt.Color(204, 255, 204));
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/5.png"))); // NOI18N
@@ -205,9 +249,9 @@ public class Manage_Receptient extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(jLabel14)
                                         .addGap(18, 18, 18)
-                                        .addComponent(com_male)
+                                        .addComponent(rad_male)
                                         .addGap(18, 18, 18)
-                                        .addComponent(com_female)
+                                        .addComponent(rad_female)
                                         .addGap(36, 36, 36))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGap(18, 18, 18)
@@ -297,8 +341,8 @@ public class Manage_Receptient extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel14)
                             .addComponent(jLabel21)
-                            .addComponent(com_male)
-                            .addComponent(com_female))
+                            .addComponent(rad_male)
+                            .addComponent(rad_female))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel15)
@@ -344,14 +388,11 @@ public class Manage_Receptient extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(97, 97, 97))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 22, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -362,7 +403,33 @@ public class Manage_Receptient extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_last_nameActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-      txt_id.setVisible(true);
+     String id = txt_id.getText();
+        try {
+            ResultSet resultset = Get_Connection.connecion().executeQuery("select * from reception where Reception_ID= '" +id+ "'");
+            if (resultset.next()) {
+                txt_first_name.setText(resultset.getString("First_Name"));
+                txt_last_name.setText(resultset.getString("Last_Name"));
+                String gender =resultset.getString("Gender");
+                
+                if(gender.equals("male")){
+                    rad_male.setSelected(true);
+                }else if(gender.equals("female")){
+                    rad_female.setSelected(true);
+                }
+               
+                txt_age.setText(""+resultset.getInt("Age"));
+                txt_city.setText(resultset.getString("City"));
+                txt_contact_number.setText(""+resultset.getInt("Contact_Number"));
+                pas_password.setText("CAN'T DISPLAY");
+                pas_re_password.setText("CAN'T DISPLAY");
+                txt_admin_id.setText(resultset.getString("Admin_ID"));
+                
+            } else {
+                JOptionPane.showConfirmDialog(this, "Unknown ID");
+                txt_id.setText(null);
+            }
+        } catch (Exception e) {
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void txt_idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_idActionPerformed
@@ -374,6 +441,132 @@ public class Manage_Receptient extends javax.swing.JFrame {
        Admin admin = new Admin();
         admin.setVisible(true);
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    String id = txt_id.getText();
+        String fname = txt_first_name.getText();
+        String lname = txt_last_name.getText();
+        String gender = "";
+        if(rad_male.isSelected()){
+            gender="male";
+        }
+        if(rad_female.isSelected()){
+            gender="female";
+        }
+        int age = Integer.parseInt(txt_age.getText());
+        String city = txt_city.getText();
+        int cnumber = Integer.parseInt(txt_contact_number.getText());
+        String pas = pas_password.getText();
+        String rpas = pas_re_password.getText();
+        String aid = txt_admin_id.getText();
+
+        try {
+            Statement statement = Get_Connection.connecion();
+            statement.executeUpdate("INSERT INTO reception (Reception_ID,First_Name,Last_Name,Gender,Age,City,Contact_Number,Password,Re_Password,Admin_ID) Value ('"+id+"','"+fname+"','"+lname+"','"+gender+"',"+age+",'"+city+"',"+cnumber+",'"+pas+"','"+rpas+"','"+aid+"')");
+            JOptionPane.showMessageDialog(this, "Saved");
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+       String id = txt_id.getText();
+        String fname = txt_first_name.getText();
+        String lname = txt_last_name.getText();
+        String gender = "";
+        if(rad_male.isSelected()){
+            gender="male";
+        }
+        if(rad_female.isSelected()){
+            gender="female";
+        }
+       
+        int age = Integer.parseInt(txt_age.getText());
+        String city = txt_city.getText();
+        int cnumber = Integer.parseInt(txt_contact_number.getText());
+        String pas = pas_password.getText();
+        String rpas = pas_re_password.getText();
+        String aid = txt_admin_id.getText();
+        try {
+            Statement statement = Get_Connection.connecion();
+            statement.executeUpdate("Update reception set First_Name='" +fname+ "',Last_Name='"+lname+"',Gender='"+gender+"',Age="+age+",City='"+city+"',Contact_Number="+cnumber+",Password='"+pas+"',Re_Password='"+rpas+"',Admin_ID='"+aid+"' where Reception_ID='"+id+"'");
+            JOptionPane.showMessageDialog(this, "Updated");
+            
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        loadId();
+                     
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+         String id = txt_id.getText();
+        try {
+             Statement statement = Get_Connection.connecion();
+        statement.executeUpdate("delete from reception where Reception_ID ='" +id+ "'");
+        JOptionPane.showMessageDialog(this, "Deleted");
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void txt_ageKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_ageKeyTyped
+          char c = evt.getKeyChar();
+        if(Character.isLetter(c)){
+            evt.consume();
+
+            java.awt.Toolkit.getDefaultToolkit().beep();
+
+        }
+    }//GEN-LAST:event_txt_ageKeyTyped
+
+    private void txt_contact_numberKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_contact_numberKeyTyped
+        char c = evt.getKeyChar();
+        if(Character.isLetter(c)){
+            evt.consume();
+
+            java.awt.Toolkit.getDefaultToolkit().beep();
+        }
+        int i = txt_contact_number.getText().length();
+        if(i==10){
+            evt.consume();
+            java.awt.Toolkit.getDefaultToolkit().beep();
+        }      
+    }//GEN-LAST:event_txt_contact_numberKeyTyped
+
+    private void pas_passwordFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_pas_passwordFocusLost
+                String pas = pas_password.getText();
+        String uc = "(.*[A-Z].*)";
+        String lc = "(.*[a-z].*)";
+        String numbers = "(.*[0-9].*)";
+        if(pas.length()>10||pas.length()<8){
+            JOptionPane.showMessageDialog(this, "Invalid Password");
+        }
+        else if(!pas.matches(uc)){
+            JOptionPane.showMessageDialog(this, "Please Include a Upper Case");
+        }
+        else if(!pas.matches(lc)){
+            JOptionPane.showMessageDialog(this, "Please Include a Lower Case");
+        }
+        else if(!pas.matches(numbers)){
+            JOptionPane.showMessageDialog(this, "Please Include a Number");
+        }
+    }//GEN-LAST:event_pas_passwordFocusLost
+
+    private void pas_re_passwordFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_pas_re_passwordFocusLost
+         String pas = pas_password.getText();
+        String rpas = pas_re_password.getText();
+
+        if(pas.equals(rpas)){
+            //JOptionPane.showMessageDialog(this, "Password Match");
+        }else{
+            pas_re_password.setText("");
+            JOptionPane.showMessageDialog(this, "Check Password Again");
+        }
+
+    }//GEN-LAST:event_pas_re_passwordFocusLost
 
     /**
      * @param args the command line arguments
@@ -412,8 +605,6 @@ public class Manage_Receptient extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JRadioButton com_female;
-    private javax.swing.JRadioButton com_male;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -444,6 +635,8 @@ public class Manage_Receptient extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPasswordField pas_password;
     private javax.swing.JPasswordField pas_re_password;
+    private javax.swing.JRadioButton rad_female;
+    private javax.swing.JRadioButton rad_male;
     private javax.swing.JTextField txt_admin_id;
     private javax.swing.JTextField txt_age;
     private javax.swing.JTextField txt_city;
@@ -452,4 +645,17 @@ public class Manage_Receptient extends javax.swing.JFrame {
     private javax.swing.JTextField txt_id;
     private javax.swing.JTextField txt_last_name;
     // End of variables declaration//GEN-END:variables
+public void loadId() {
+        try {
+            ResultSet resultset = Get_Connection.connecion().executeQuery("select count(Reception_ID) as x from reception;");
+            
+            if (resultset.next()) {
+                int rowcount = resultset.getInt("x");
+                rowcount++;
+                txt_id.setText("" + rowcount);
+            }
+            
+        } catch (Exception e) {
+        }
+    }
 }
