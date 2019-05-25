@@ -5,8 +5,11 @@
  */
 package Interface;
 
+import java.awt.Color;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import javax.swing.JOptionPane;
 
 /**
@@ -121,6 +124,11 @@ public class Manage_Receptient extends javax.swing.JFrame {
 
         jLabel20.setText("Auto Generate");
 
+        txt_id.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txt_idFocusLost(evt);
+            }
+        });
         txt_id.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_idActionPerformed(evt);
@@ -164,6 +172,12 @@ public class Manage_Receptient extends javax.swing.JFrame {
         pas_re_password.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 pas_re_passwordFocusLost(evt);
+            }
+        });
+
+        txt_admin_id.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txt_admin_idFocusLost(evt);
             }
         });
 
@@ -437,9 +451,9 @@ public class Manage_Receptient extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_idActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-       manage_receptient.setVisible(false);
-       Admin admin = new Admin();
-        admin.setVisible(true);
+        this.dispose();
+        Login login = new Login();
+        login.setVisible(true);
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -459,10 +473,17 @@ public class Manage_Receptient extends javax.swing.JFrame {
         String pas = pas_password.getText();
         String rpas = pas_re_password.getText();
         String aid = txt_admin_id.getText();
+       
+        long timeInMillis = System.currentTimeMillis();
+        Calendar cal1 = Calendar.getInstance();
+    cal1.setTimeInMillis(timeInMillis);
+    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd    hh-mm-ss ");
+    String date=dateFormat.format(cal1.getTime());
+    System.out.println(date);
 
         try {
             Statement statement = Get_Connection.connecion();
-            statement.executeUpdate("INSERT INTO reception (Reception_ID,First_Name,Last_Name,Gender,Age,City,Contact_Number,Password,Re_Password,Admin_ID) Value ('"+id+"','"+fname+"','"+lname+"','"+gender+"',"+age+",'"+city+"',"+cnumber+",'"+pas+"','"+rpas+"','"+aid+"')");
+            statement.executeUpdate("INSERT INTO reception (Reception_ID,First_Name,Last_Name,Gender,Age,City,Contact_Number,Password,Re_Password,Admin_ID,Date_Time) Value ('"+id+"','"+fname+"','"+lname+"','"+gender+"',"+age+",'"+city+"',"+cnumber+",'"+pas+"','"+rpas+"','"+aid+"',"+date+")");
             JOptionPane.showMessageDialog(this, "Saved");
 
         } catch (Exception e) {
@@ -504,7 +525,7 @@ public class Manage_Receptient extends javax.swing.JFrame {
          String id = txt_id.getText();
         try {
              Statement statement = Get_Connection.connecion();
-        statement.executeUpdate("delete from reception where Reception_ID ='" +id+ "'");
+        statement.executeUpdate("Update receptient set Status='N' where Receptient_ID='"+id+"'");
         JOptionPane.showMessageDialog(this, "Deleted");
         } catch (Exception e) {
             System.out.println(e);
@@ -567,6 +588,40 @@ public class Manage_Receptient extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_pas_re_passwordFocusLost
+
+    private void txt_idFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_idFocusLost
+          String id = txt_id.getText();
+        try {
+            ResultSet resultset = Get_Connection.connecion().executeQuery("select * from receptient where Receptient_ID= '" +id+ "'");
+            
+            if (resultset.next()) {
+                String status = resultset.getString("Status");
+                if(status.equals("N")){
+                   JOptionPane.showMessageDialog(this, "Not an active member");
+                   txt_id.setBackground(Color.red);
+                }}
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_txt_idFocusLost
+
+    private void txt_admin_idFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_admin_idFocusLost
+          String id = txt_id.getText();
+        try {
+            ResultSet resultset = Get_Connection.connecion().executeQuery("select * from admin where Admin_ID= '" +id+ "'");
+            
+            if (resultset.next()) {
+                String status = resultset.getString("Status");
+                if(status.equals("N")){
+                   JOptionPane.showMessageDialog(this, "Not an active member");
+                   txt_admin_id.setBackground(Color.red);
+                   txt_admin_id.setText("");
+                }}else{
+            JOptionPane.showMessageDialog(this, "Invalid Admin Number");
+            txt_admin_id.setText("");
+            }
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_txt_admin_idFocusLost
 
     /**
      * @param args the command line arguments

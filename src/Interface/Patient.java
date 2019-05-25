@@ -6,6 +6,7 @@
 package Interface;
 
 import Database.Get_Connection;
+import java.awt.Color;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
@@ -175,11 +176,21 @@ public class Patient extends javax.swing.JFrame {
         jButton1.setBackground(new java.awt.Color(0, 0, 0));
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Add Appointment");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setBackground(new java.awt.Color(0, 0, 0));
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Print Bill");
 
+        txt_id.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txt_idFocusLost(evt);
+            }
+        });
         txt_id.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_idActionPerformed(evt);
@@ -345,7 +356,7 @@ public class Patient extends javax.swing.JFrame {
         String id = txt_id.getText();
         try {
             Statement statement = Get_Connection.connecion();
-            statement.executeUpdate("delete from patient where Patient_ID ='" +id+ "'");
+            statement.executeUpdate("Update patient set Status='N' where Patient_ID='"+id+"'");
         } catch (Exception e) {
         }
     }//GEN-LAST:event_btn_deleteActionPerformed
@@ -425,6 +436,27 @@ public class Patient extends javax.swing.JFrame {
 
         }
     }//GEN-LAST:event_txt_ageKeyTyped
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        Appointment appointment = new Appointment();
+        appointment.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void txt_idFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_idFocusLost
+          String id = txt_id.getText();
+        try {
+            ResultSet resultset = Interface.Get_Connection.connecion().executeQuery("select * from patient where Patient_ID= '" +id+ "'");
+            
+            if (resultset.next()) {
+                String status = resultset.getString("Status");
+                if(status.equals("N")){
+                   JOptionPane.showMessageDialog(this, "Not an active member");
+                   txt_id.setBackground(Color.red);
+                }}
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_txt_idFocusLost
 
     /**
      * @param args the command line arguments

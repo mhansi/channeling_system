@@ -5,6 +5,7 @@
  */
 package Interface;
 
+import java.awt.Color;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
@@ -136,6 +137,12 @@ public class Manage_Doctors extends javax.swing.JFrame {
             }
         });
 
+        txt_admin_id.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txt_admin_idFocusLost(evt);
+            }
+        });
+
         buttonGroup1.add(rad_male);
         rad_male.setText("Male");
 
@@ -162,6 +169,11 @@ public class Manage_Doctors extends javax.swing.JFrame {
             }
         });
 
+        txt_id.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txt_idFocusLost(evt);
+            }
+        });
         txt_id.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_idActionPerformed(evt);
@@ -376,9 +388,9 @@ public class Manage_Doctors extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        manage_doctors.setVisible(false);
-        Admin admin = new Admin();
-        admin.setVisible(true);
+        this.dispose();
+        Login login = new Login();
+        login.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void btn_saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_saveActionPerformed
@@ -537,7 +549,7 @@ public class Manage_Doctors extends javax.swing.JFrame {
         String id = txt_id.getText();
         try {
              Statement statement = Get_Connection.connecion();
-        statement.executeUpdate("delete from doctors where Doctor_ID ='" +id+ "'");
+        statement.executeUpdate("Update doctors set Status='N' where Doctor_ID='"+id+"'");
         JOptionPane.showMessageDialog(this, "Deleted");
         } catch (Exception e) {
             System.out.println(e);
@@ -547,6 +559,40 @@ public class Manage_Doctors extends javax.swing.JFrame {
     private void pas_re_passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pas_re_passwordActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_pas_re_passwordActionPerformed
+
+    private void txt_idFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_idFocusLost
+         String id = txt_id.getText();
+        try {
+            ResultSet resultset = Get_Connection.connecion().executeQuery("select * from doctors where Doctor_ID= '" +id+ "'");
+            
+            if (resultset.next()) {
+                String status = resultset.getString("Status");
+                if(status.equals("N")){
+                   JOptionPane.showMessageDialog(this, "Not an active member");
+                   txt_id.setBackground(Color.red);
+                }}
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_txt_idFocusLost
+
+    private void txt_admin_idFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_admin_idFocusLost
+          String id = txt_id.getText();
+        try {
+            ResultSet resultset = Get_Connection.connecion().executeQuery("select * from admin where Admin_ID= '" +id+ "'");
+            
+            if (resultset.next()) {
+                String status = resultset.getString("Status");
+                if(status.equals("N")){
+                   JOptionPane.showMessageDialog(this, "Not an active member");
+                   txt_admin_id.setBackground(Color.red);
+                   txt_admin_id.setText("");
+                }}else{
+            JOptionPane.showMessageDialog(this, "Invalid Admin Number");
+            txt_admin_id.setText("");
+            }
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_txt_admin_idFocusLost
 
     /**
      * @param args the command line arguments

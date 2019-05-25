@@ -5,6 +5,9 @@
  */
 package Interface;
 
+import java.sql.ResultSet;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Hansi
@@ -36,16 +39,17 @@ public class Signup extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jRadioButton3 = new javax.swing.JRadioButton();
-        jTextField1 = new javax.swing.JTextField();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        rad_admin = new javax.swing.JRadioButton();
+        rad_doctor = new javax.swing.JRadioButton();
+        rad_receptient = new javax.swing.JRadioButton();
+        txt_id = new javax.swing.JTextField();
+        pas_pas = new javax.swing.JPasswordField();
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(204, 255, 204));
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 5));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/login.png"))); // NOI18N
@@ -63,24 +67,29 @@ public class Signup extends javax.swing.JFrame {
 
         jLabel7.setText(":");
 
-        buttonGroup1.add(jRadioButton1);
-        jRadioButton1.setText("Admin");
+        buttonGroup1.add(rad_admin);
+        rad_admin.setText("Admin");
 
-        buttonGroup1.add(jRadioButton2);
-        jRadioButton2.setText("Doctor");
+        buttonGroup1.add(rad_doctor);
+        rad_doctor.setText("Doctor");
 
-        buttonGroup1.add(jRadioButton3);
-        jRadioButton3.setText("Recepient");
+        buttonGroup1.add(rad_receptient);
+        rad_receptient.setText("Receptient");
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        txt_id.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                txt_idActionPerformed(evt);
             }
         });
 
         jButton1.setBackground(new java.awt.Color(51, 51, 51));
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Signup");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -102,19 +111,19 @@ public class Signup extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel7)
                                 .addGap(18, 18, 18)
-                                .addComponent(jPasswordField1))
+                                .addComponent(pas_pas))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel6)
                                 .addGap(18, 18, 18)
-                                .addComponent(jTextField1))
+                                .addComponent(txt_id))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel5)
                                 .addGap(18, 18, 18)
-                                .addComponent(jRadioButton1)
+                                .addComponent(rad_admin)
                                 .addGap(26, 26, 26)
-                                .addComponent(jRadioButton2)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
-                        .addComponent(jRadioButton3)))
+                                .addComponent(rad_doctor)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                        .addComponent(rad_receptient)))
                 .addGap(46, 46, 46))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(169, 169, 169)
@@ -130,14 +139,14 @@ public class Signup extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jLabel5)
-                    .addComponent(jRadioButton1)
-                    .addComponent(jRadioButton2)
-                    .addComponent(jRadioButton3))
+                    .addComponent(rad_admin)
+                    .addComponent(rad_doctor)
+                    .addComponent(rad_receptient))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jLabel6)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(27, 27, 27)
@@ -146,8 +155,8 @@ public class Signup extends javax.swing.JFrame {
                             .addComponent(jLabel7)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                        .addComponent(pas_pas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addGap(46, 46, 46))
         );
@@ -166,9 +175,80 @@ public class Signup extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void txt_idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_idActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_txt_idActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        String id = txt_id.getText();
+        String pas = pas_pas.getText();
+        if(rad_admin.isSelected()){
+            try {
+                 ResultSet resultset = Get_Connection.connecion().executeQuery("select * from admin where Admin_ID= '" +id+ "'");
+                  if (resultset.next()) {
+                 String pas2=resultset.getString("Password");
+                    
+                 System.out.println(pas2);
+                if (pas.equals(pas2)) {
+                    Admin admin = new Admin();
+                    admin.setVisible(true);
+                    this.dispose();
+                      pas_pas.setText("");
+                    txt_id.setText("");
+                } else {
+                    JOptionPane.showMessageDialog(this, "Wrong Password");
+                    pas_pas.setText("");
+                }
+                  }
+            } catch (Exception e) {
+                System.out.println(e);
+            }
+        }
+        if(rad_doctor.isSelected()){
+            try {
+                 ResultSet resultset = Get_Connection.connecion().executeQuery("select * from doctors where Doctor_ID= '" +id+ "'");
+            if (resultset.next()) {
+                 String pas2=resultset.getString("Password");
+                    
+                 System.out.println(pas2);
+                if (pas.equals(pas2)) {
+                    Patient patient = new Patient();
+                    patient.setVisible(true);
+                    this.dispose();
+                    pas_pas.setText("");
+                    txt_id.setText("");
+                } else {
+                    JOptionPane.showMessageDialog(this, "Wrong Password");
+                    pas_pas.setText("");
+                }
+                  }
+            } catch (Exception e) {
+                System.out.println(e);
+            }
+        }
+        if(rad_receptient.isSelected()){
+            try {
+                 ResultSet resultset = Get_Connection.connecion().executeQuery("select * from reception where Reception_ID= '" +id+ "'");
+            if (resultset.next()) {
+                 String pas2=resultset.getString("Password");
+                    
+                 System.out.println(pas2);
+                if (pas.equals(pas2)) {
+                    Patient patient = new Patient();
+                    patient.setVisible(true);
+                    this.dispose();
+                      pas_pas.setText("");
+                    txt_id.setText("");
+                } else {
+                    JOptionPane.showMessageDialog(this, "Wrong Password");
+                    pas_pas.setText("");
+                }
+                  }
+            } catch (Exception e) {
+                System.out.println(e);
+            }
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -216,10 +296,10 @@ public class Signup extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JPasswordField pas_pas;
+    private javax.swing.JRadioButton rad_admin;
+    private javax.swing.JRadioButton rad_doctor;
+    private javax.swing.JRadioButton rad_receptient;
+    private javax.swing.JTextField txt_id;
     // End of variables declaration//GEN-END:variables
 }

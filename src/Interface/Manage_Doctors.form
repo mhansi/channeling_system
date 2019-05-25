@@ -355,6 +355,9 @@
           </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="txt_admin_id">
+          <Events>
+            <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txt_admin_idFocusLost"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JRadioButton" name="rad_male">
           <Properties>
@@ -403,6 +406,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txt_id">
           <Events>
+            <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txt_idFocusLost"/>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txt_idActionPerformed"/>
           </Events>
         </Component>
