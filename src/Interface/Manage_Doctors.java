@@ -8,6 +8,8 @@ package Interface;
 import java.awt.Color;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import javax.swing.JOptionPane;
 
 /**
@@ -58,7 +60,6 @@ public class Manage_Doctors extends javax.swing.JFrame {
         jLabel23 = new javax.swing.JLabel();
         txt_first_name = new javax.swing.JTextField();
         txt_last_name = new javax.swing.JTextField();
-        txt_age = new javax.swing.JTextField();
         txt_contact_number = new javax.swing.JTextField();
         txt_admin_id = new javax.swing.JTextField();
         rad_male = new javax.swing.JRadioButton();
@@ -72,6 +73,10 @@ public class Manage_Doctors extends javax.swing.JFrame {
         btn_search = new javax.swing.JButton();
         btn_delete = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
+        jLabel24 = new javax.swing.JLabel();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -92,7 +97,7 @@ public class Manage_Doctors extends javax.swing.JFrame {
 
         jLabel6.setText("Specialization");
 
-        jLabel7.setText("Age");
+        jLabel7.setText("Birthday");
 
         jLabel8.setText("Contact Number");
 
@@ -121,15 +126,6 @@ public class Manage_Doctors extends javax.swing.JFrame {
         jLabel22.setText(":");
 
         jLabel23.setText(":");
-
-        txt_age.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txt_ageKeyPressed(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txt_ageKeyTyped(evt);
-            }
-        });
 
         txt_contact_number.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -229,6 +225,12 @@ public class Manage_Doctors extends javax.swing.JFrame {
             }
         });
 
+        jLabel19.setText("Date and Time");
+
+        jLabel20.setText("jLabel20");
+
+        jLabel24.setText(":");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -251,7 +253,8 @@ public class Manage_Doctors extends javax.swing.JFrame {
                     .addComponent(jLabel8)
                     .addComponent(jLabel9)
                     .addComponent(jLabel10)
-                    .addComponent(jLabel11))
+                    .addComponent(jLabel11)
+                    .addComponent(jLabel19))
                 .addGap(23, 23, 23)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel23, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -263,28 +266,32 @@ public class Manage_Doctors extends javax.swing.JFrame {
                     .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel24, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(31, 31, 31)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel20)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(com_specialization, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(txt_admin_id, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
-                                .addComponent(pas_re_password, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(pas_password, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txt_contact_number, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txt_age, javax.swing.GroupLayout.Alignment.LEADING))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(rad_male)
                                 .addGap(18, 18, 18)
                                 .addComponent(rad_female))
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(txt_last_name, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)
-                                .addComponent(txt_first_name, javax.swing.GroupLayout.Alignment.LEADING)))
+                                .addComponent(txt_first_name, javax.swing.GroupLayout.Alignment.LEADING))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jDateChooser1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txt_admin_id, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
+                                .addComponent(pas_re_password, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(pas_password, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txt_contact_number, javax.swing.GroupLayout.Alignment.LEADING)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(btn_search, javax.swing.GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE)
@@ -338,12 +345,13 @@ public class Manage_Doctors extends javax.swing.JFrame {
                                         .addComponent(jLabel6)
                                         .addComponent(jLabel18))
                                     .addComponent(com_specialization, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(29, 29, 29)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel7)
-                                    .addComponent(txt_age, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel14))
-                                .addGap(27, 27, 27)
+                                .addGap(32, 32, 32)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jLabel7)
+                                        .addComponent(jLabel14))
+                                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(24, 24, 24)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel8)
                                     .addComponent(txt_contact_number, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -368,7 +376,12 @@ public class Manage_Doctors extends javax.swing.JFrame {
                     .addComponent(jLabel11)
                     .addComponent(txt_admin_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel23))
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel19)
+                    .addComponent(jLabel20)
+                    .addComponent(jLabel24))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -405,16 +418,24 @@ public class Manage_Doctors extends javax.swing.JFrame {
             gender="female";
         }
         String specialization = com_specialization.getSelectedItem().toString();
-        int age = Integer.parseInt(txt_age.getText());
+         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String date2 = sdf.format(jDateChooser1.getDate());
 
         int cnumber = Integer.parseInt(txt_contact_number.getText());
         String pas = pas_password.getText();
         String rpas = pas_re_password.getText();
         String aid = txt_admin_id.getText();
+        
+        long timeInMillis = System.currentTimeMillis();
+        Calendar cal1 = Calendar.getInstance();
+        cal1.setTimeInMillis(timeInMillis);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd    hh-mm-ss a");
+        String date=dateFormat.format(cal1.getTime());
+        System.out.println(date);
 
         try {
             Statement statement = Get_Connection.connecion();
-            statement.executeUpdate("INSERT INTO doctors (Doctor_ID,First_Name,Last_Name,Gender,Specialization,Age,Contact_Number,Password,Re_Password,Admin_ID) Value ('"+id+"','"+fname+"','"+lname+"','"+gender+"','"+specialization+"',"+age+","+cnumber+",'"+pas+"','"+rpas+"','"+aid+"')");
+            statement.executeUpdate("INSERT INTO doctors (Doctor_ID,First_Name,Last_Name,Gender,Specialization,Birthday,Contact_Number,Password,Re_Password,Admin_ID,Status,Date_Time) Value ('"+id+"','"+fname+"','"+lname+"','"+gender+"','"+specialization+"',"+date2+","+cnumber+",'"+pas+"','"+rpas+"','"+aid+"','Y','"+date+"')");
             JOptionPane.showMessageDialog(this, "Saved");
 
         } catch (Exception e) {
@@ -473,20 +494,6 @@ public class Manage_Doctors extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txt_contact_numberKeyTyped
 
-    private void txt_ageKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_ageKeyTyped
-        char c = evt.getKeyChar();
-        if(Character.isLetter(c)){
-            evt.consume();
-
-            java.awt.Toolkit.getDefaultToolkit().beep();
-
-        }
-    }//GEN-LAST:event_txt_ageKeyTyped
-
-    private void txt_ageKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_ageKeyPressed
-
-    }//GEN-LAST:event_txt_ageKeyPressed
-
     private void btn_updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_updateActionPerformed
         String id = txt_id.getText();
         String fname = txt_first_name.getText();
@@ -499,15 +506,24 @@ public class Manage_Doctors extends javax.swing.JFrame {
             gender="female";
         }
         String specialization = com_specialization.getSelectedItem().toString();
-        int age = Integer.parseInt(txt_age.getText());
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String date2 = sdf.format(jDateChooser1.getDate());
 
         int cnumber = Integer.parseInt(txt_contact_number.getText());
         String pas = pas_password.getText();
         String rpas = pas_re_password.getText();
         String aid = txt_admin_id.getText();
+        
+        long timeInMillis = System.currentTimeMillis();
+        Calendar cal1 = Calendar.getInstance();
+        cal1.setTimeInMillis(timeInMillis);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd    hh-mm-ss a");
+        String date=dateFormat.format(cal1.getTime());
+        System.out.println(date);
+        
         try {
             Statement statement = Get_Connection.connecion();
-            statement.executeUpdate("Update doctors set First_Name='" +fname+ "',Last_Name='"+lname+"',Gender='"+gender+"',Specialization='"+specialization+"',Age="+age+",Contact_Number="+cnumber+",Password='"+pas+"',Re_Password='"+rpas+"',Admin_ID='"+aid+"' where Doctor_ID='"+id+"'");
+            statement.executeUpdate("Update doctors set First_Name='" +fname+ "',Last_Name='"+lname+"',Gender='"+gender+"',Specialization='"+specialization+"',Birthday='"+date2+"',Contact_Number="+cnumber+",Password='"+pas+"',Re_Password='"+rpas+"',Admin_ID='"+aid+"',Date_Time='"+date+"' where Doctor_ID='"+id+"'");
             JOptionPane.showMessageDialog(this, "Updated");
             
         } catch (Exception e) {
@@ -530,8 +546,9 @@ public class Manage_Doctors extends javax.swing.JFrame {
                 }else if(gender.equals("female")){
                     rad_female.setSelected(true);
                 }
+                jLabel20.setText(resultset.getString("Date_Time"));
                 com_specialization.setSelectedItem(resultset.getString("Specialization"));
-                txt_age.setText(""+resultset.getInt("Age"));
+                jDateChooser1.setDate(resultset.getDate("Birthday"));
                 txt_contact_number.setText(""+resultset.getInt("Contact_Number"));
                 pas_password.setText("CAN'T DISPLAY");
                 pas_re_password.setText("CAN'T DISPLAY");
@@ -639,6 +656,7 @@ public class Manage_Doctors extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox<String> com_specialization;
     private javax.swing.JButton jButton3;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -649,10 +667,13 @@ public class Manage_Doctors extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -666,7 +687,6 @@ public class Manage_Doctors extends javax.swing.JFrame {
     private javax.swing.JRadioButton rad_female;
     private javax.swing.JRadioButton rad_male;
     private javax.swing.JTextField txt_admin_id;
-    private javax.swing.JTextField txt_age;
     private javax.swing.JTextField txt_contact_number;
     private javax.swing.JTextField txt_first_name;
     private javax.swing.JTextField txt_id;

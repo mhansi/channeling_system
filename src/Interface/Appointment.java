@@ -9,6 +9,7 @@ import java.awt.Color;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import javax.swing.JOptionPane;
 
 /**
@@ -55,6 +56,8 @@ public class Appointment extends javax.swing.JFrame {
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -157,6 +160,15 @@ public class Appointment extends javax.swing.JFrame {
         });
 
         jButton7.setText("Search For Patient");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+
+        jLabel9.setText("Date And Time");
+
+        jLabel10.setText("jLabel10");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -179,15 +191,17 @@ public class Appointment extends javax.swing.JFrame {
                                     .addComponent(jLabel4)
                                     .addComponent(jLabel5)
                                     .addComponent(jLabel6)
-                                    .addComponent(jLabel7))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel9))
+                                .addGap(19, 19, 19)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(txt_id)
                                     .addComponent(txt_rid)
                                     .addComponent(txt_pid)
                                     .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE)
                                     .addComponent(txt_did, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel10)))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addContainerGap()
                                 .addComponent(jButton1)
@@ -249,9 +263,13 @@ public class Appointment extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel7)
-                                .addContainerGap(91, Short.MAX_VALUE))
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel9)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(txt_did, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel10)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jButton1)
                                 .addGap(32, 32, 32))))
@@ -313,9 +331,17 @@ public class Appointment extends javax.swing.JFrame {
         String did = txt_did.getText();
         int number = Integer.parseInt(jLabel8.getText());
         
+      long timeInMillis = System.currentTimeMillis();
+        Calendar cal1 = Calendar.getInstance();
+        cal1.setTimeInMillis(timeInMillis);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd    hh-mm-ss a");
+        String date2=dateFormat.format(cal1.getTime());
+        System.out.println(date);
+        
+     
         try {
             Statement statement = Get_Connection.connecion();
-            statement.executeUpdate("INSERT INTO appointment (Appointment_ID,Reception_ID,Patient_ID,Date,Number,Doctor_ID) Value ('"+id+"','"+rid+"','"+pid+"','"+date+"',"+number+",'"+did+"')");
+            statement.executeUpdate("INSERT INTO appointment (Appointment_ID,Reception_ID,Patient_ID,Date,Number,Doctor_ID,Date_Time) Value ('"+id+"','"+rid+"','"+pid+"','"+date+"',"+number+",'"+did+"','"+date2+"')");
             JOptionPane.showMessageDialog(this, "Saved");
             
         } catch (Exception e) {
@@ -342,9 +368,17 @@ public class Appointment extends javax.swing.JFrame {
         String date = sdf.format(jDateChooser1.getDate());
         String did = txt_did.getText();
         int number = Integer.parseInt(jLabel8.getText());
+        
+           long timeInMillis = System.currentTimeMillis();
+        Calendar cal1 = Calendar.getInstance();
+        cal1.setTimeInMillis(timeInMillis);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd    hh-mm-ss a");
+        String date2=dateFormat.format(cal1.getTime());
+        System.out.println(date);
+        
         try {
             Statement statement = Get_Connection.connecion();
-            statement.executeUpdate("Update appointment set Reception_ID='"+rid+"',Patient_ID='"+pid+"',Date='"+date+"',Number="+number+",Doctor_ID='"+did+"' where Appointment_ID='"+id+"'");
+            statement.executeUpdate("Update appointment set Reception_ID='"+rid+"',Patient_ID='"+pid+"',Date='"+date+"',Number="+number+",Doctor_ID='"+did+"',Date_Time='"+date2+"' where Appointment_ID='"+id+"'");
             JOptionPane.showMessageDialog(this, "Updated");
             
         } catch (Exception e) {
@@ -364,6 +398,7 @@ public class Appointment extends javax.swing.JFrame {
                 jDateChooser1.setDate(resultset.getDate("Date"));
                 jLabel8.setText(resultset.getString("Number"));
                 txt_did.setText(resultset.getString("Doctor_ID"));
+                jLabel10.setText(resultset.getString("Date_Time"));
                 
                 
             } else {
@@ -436,8 +471,12 @@ public class Appointment extends javax.swing.JFrame {
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         Search_For_doctors sfd = new Search_For_doctors();
         sfd.setVisible(true);
-        this.dispose();
+        
     }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton7ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -484,6 +523,7 @@ public class Appointment extends javax.swing.JFrame {
     private javax.swing.JButton jButton7;
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -491,6 +531,7 @@ public class Appointment extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField txt_did;
     private javax.swing.JTextField txt_id;
